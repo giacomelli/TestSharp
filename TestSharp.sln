@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AF577391-3E57-49CA-AC84-219CEF88D674}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharp.Tests", "TestSharp.Tests\TestSharp.Tests.csproj", "{6926D3D5-30BA-4301-ACCE-CC379BFC2E1F}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TestSharp.WebSiteStubTest", "TestSharp.WebSiteStubTest\", "{1B592824-9FE9-4A3D-8846-EF74742404C2}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/TestSharp.WebSiteStubTest"
+		Debug.AspNetCompiler.PhysicalPath = "TestSharp.WebSiteStubTest\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\TestSharp.WebSiteStubTest\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/TestSharp.WebSiteStubTest"
+		Release.AspNetCompiler.PhysicalPath = "TestSharp.WebSiteStubTest\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\TestSharp.WebSiteStubTest\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "65344"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharp", "TestSharp\TestSharp.csproj", "{A36D353D-729E-45DC-8880-45AE72BFE12D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6926D3D5-30BA-4301-ACCE-CC379BFC2E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6926D3D5-30BA-4301-ACCE-CC379BFC2E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6926D3D5-30BA-4301-ACCE-CC379BFC2E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6926D3D5-30BA-4301-ACCE-CC379BFC2E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B592824-9FE9-4A3D-8846-EF74742404C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B592824-9FE9-4A3D-8846-EF74742404C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B592824-9FE9-4A3D-8846-EF74742404C2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B592824-9FE9-4A3D-8846-EF74742404C2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{A36D353D-729E-45DC-8880-45AE72BFE12D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A36D353D-729E-45DC-8880-45AE72BFE12D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A36D353D-729E-45DC-8880-45AE72BFE12D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A36D353D-729E-45DC-8880-45AE72BFE12D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6926D3D5-30BA-4301-ACCE-CC379BFC2E1F} = {AF577391-3E57-49CA-AC84-219CEF88D674}
+		{1B592824-9FE9-4A3D-8846-EF74742404C2} = {AF577391-3E57-49CA-AC84-219CEF88D674}
+	EndGlobalSection
+EndGlobal
