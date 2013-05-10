@@ -3,15 +3,15 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.IO;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class ZipHelperTest
 	{
-		[TestMethod]
+		[Test]
 		public void ExtractAll_NonExistingZipFilePath_ArgumentException()
 		{
 			var dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TESTDIR");
@@ -23,7 +23,7 @@ namespace TestSharp.Tests
 			});
 		}
 
-		[TestMethod]
+		[Test]
 		public void ExtractAll_NonExistingDestinationDirectoryPath_ArgumentException()
 		{
 			var zipFilePath = Path.Combine(VSProjectHelper.GetProjectFolderPath("TestSharp.Tests"), @"Helpers\Resources\ZipHelperTest.zip");
@@ -37,7 +37,7 @@ namespace TestSharp.Tests
 			});
 		}
 
-		[TestMethod]
+		[Test]
 		public void ExtractAll_ValidZipAndDirectory_AllFilesExtracteds()
 		{
 			var zipFilePath = Path.Combine(VSProjectHelper.GetProjectFolderPath("TestSharp.Tests"), @"Helpers\Resources\ZipHelperTest.zip");			

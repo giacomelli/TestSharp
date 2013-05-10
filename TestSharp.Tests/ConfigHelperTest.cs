@@ -1,15 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using TestSharp.Tests.Helpers;
 using System.Configuration;
 using System;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class ConfigHelperTest
 	{
 		#region Tests
-		[TestMethod]
+		[Test]
 		public void ReadWebConfigTest()
 		{
 			var config = ConfigHelper.ReadConfig(WebSiteStubHelper.ProjectFolderName);
@@ -19,14 +19,14 @@ namespace TestSharp.Tests
 			Assert.AreEqual("value2", config.AppSettings.Settings["key2"].Value);
 		}
 
-		[TestMethod]
+		[Test]
 		public void ReadAppSettingTest()
 		{
 			Assert.AreEqual("value1", ConfigHelper.ReadAppSetting(WebSiteStubHelper.ProjectFolderName, "key1"));
 			Assert.AreEqual("value2", ConfigHelper.ReadAppSetting(WebSiteStubHelper.ProjectFolderName, "key2"));
 		}
 
-		[TestMethod]
+		[Test]
 		public void WriteAppSetting_KeyDoesNotExists_Exception()
 		{
 			ExceptionAssert.IsThrowing(new ArgumentException("A chave 'KeyDoesNotExists' não existe no AppSettings.", "key"), () =>
@@ -35,7 +35,7 @@ namespace TestSharp.Tests
 			});
 		}
 
-		[TestMethod]
+		[Test]
 		public void WriteAppSetting_KeysExists_UpdatedToFile()
 		{
 			// Key 1.

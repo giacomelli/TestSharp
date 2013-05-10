@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Data.SqlClient;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class SqlHelperTest
 	{
-		[TestMethod]
+		[Test]
 		public void ConnectionStringTest()
 		{
 			ExceptionAssert.IsThrowing(
@@ -23,7 +23,7 @@ namespace TestSharp.Tests
 			SqlHelper.ConnectionString = null;
 		}
 
-		[TestMethod]
+		[Test]
 		public void NoConnectionStringExecutes()
 		{
 			SqlHelper.ConnectionString = "User ID=test;Password=test;Database=test;Server=test;Connection Timeout=5;";
@@ -60,7 +60,7 @@ namespace TestSharp.Tests
 			});
 		}
 
-		[TestMethod]
+		[Test]
 		public void WrongConnectionStringExecutes()
 		{
 			SqlHelper.ConnectionString = "My wrong connection string";

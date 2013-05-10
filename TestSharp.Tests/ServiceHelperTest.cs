@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class ServiceHelperTest
 	{
 		#region Constants
@@ -10,7 +10,7 @@ namespace TestSharp.Tests
 		#endregion
 
 		#region Tests
-		[TestMethod]
+		[Test]
 		public void ForceStartTest()
 		{
 			ServiceHelper.ForceStart(ServiceName);
@@ -22,7 +22,7 @@ namespace TestSharp.Tests
 			ServiceHelper.Stop(ServiceName);
 		}
 
-		[TestMethod]
+		[Test]
 		public void IsRunningTest()
 		{			
 			ServiceHelper.ForceStart(ServiceName);
@@ -32,7 +32,7 @@ namespace TestSharp.Tests
 			Assert.IsFalse(ServiceHelper.IsRunning(ServiceName));
 		}
 
-		[TestMethod]
+		[Test]
 		public void IsStoppedTest()
 		{
 			ServiceHelper.ForceStart(ServiceName);
@@ -42,7 +42,7 @@ namespace TestSharp.Tests
 			Assert.IsTrue(ServiceHelper.IsStopped(ServiceName));
 		}
 
-		[TestMethod]
+		[Test]
 		public void StopTest()
 		{			
 			ServiceHelper.ForceStart(ServiceName);
@@ -51,19 +51,19 @@ namespace TestSharp.Tests
 			ServiceAssert.IsStopped(ServiceName);
 		}
 
-		[TestMethod]
+		[Test]
 		public void InstallTest()
 		{
 			ServiceHelper.Install("teste");
 		}
 
-		[TestMethod]
+		[Test]
 		public void UninstallTest()
 		{
 			ServiceHelper.Uninstall("teste");
 		}
 
-		[TestMethod]
+		[Test]
 		public void ReinstallTest()
 		{
 			ServiceHelper.Reinstall("teste");

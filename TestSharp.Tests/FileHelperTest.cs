@@ -2,14 +2,14 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class FileHelperTest
 	{
 		#region Fields
@@ -17,19 +17,19 @@ namespace TestSharp.Tests
 		#endregion
 
 		#region Initialize / Cleanup
-		[ClassInitialize]
-		public static void Initialize(TestContext context)
+		[TestFixtureSetUp]
+		public static void Initialize()
 		{
 			s_directoryPath = Directory.CreateDirectory("FileHelperTest").FullName;
 		}
 
-		[ClassCleanup]
+		[TestFixtureTearDown]
 		public static void Cleanup()
 		{
 			Directory.Delete(s_directoryPath, true);
 		}
 
-		[TestCleanup]
+		[TearDown]
 		public void TestCleanup()
 		{
 			DirectoryHelper.DeleteAllFiles(s_directoryPath, "*.*", true);
@@ -37,7 +37,7 @@ namespace TestSharp.Tests
 		#endregion
 
 		#region Tests
-		[TestMethod]
+		[Test]
 		public void GetLastModificationTest()
 		{
 			var fileName = Path.Combine(s_directoryPath, "file.txt");
@@ -56,7 +56,7 @@ namespace TestSharp.Tests
 			DateTimeAssert.AreEqualIgnoringMilliseconds(DateTime.UtcNow, actual.ToUniversalTime());
 		}
 
-		[TestMethod]
+		[Test]
 		public void CreateFilesTest()
 		{
 			FileHelper.CreateFiles(s_directoryPath, "file1.txt");
@@ -69,7 +69,7 @@ namespace TestSharp.Tests
 
 
 
-		[TestMethod]
+		[Test]
 		public void DeleteFilesFromDirectoryTest()
 		{
 			FileHelper.DeleteFilesFromDirectory(s_directoryPath);
@@ -83,7 +83,7 @@ namespace TestSharp.Tests
 			FileAssert.NonExists(Path.Combine(s_directoryPath, "file2.doc"));
 		}
 
-		[TestMethod]
+		[Test]
 		public void DeleteFilesFromDirectory_DirectoryNotExist_ArgumentException()
 		{
 			ExceptionAssert.IsThrowing(new ArgumentException(@"Directory 'X:\TESTE\TESTE\TESTE' does not exists.", "directoryPath"), () => 
@@ -92,7 +92,7 @@ namespace TestSharp.Tests
 			});
 		}		
 
-		[TestMethod]
+		[Test]
 		public void DeleteFilesTest()
 		{
 			var file1 = Path.Combine(s_directoryPath, "file1.txt");
@@ -108,7 +108,7 @@ namespace TestSharp.Tests
 			FileAssert.NonExists(file2);
 		}
 
-		[TestMethod]
+		[Test]
 		public void ReadAllTextWithoutLockTest()
 		{
 			var filePath = Path.Combine(s_directoryPath, "file1.txt");
@@ -127,7 +127,7 @@ namespace TestSharp.Tests
 			FileAssert.IsContent("ReadAllTextWithoutLockTest1ReadAllTextWithoutLockTest2", filePath);
 		}
 		
-		[TestMethod]
+		[Test]
 		public void ReadAllLinesTest()
 		{
 			FileHelper.CreateFilesWithContent(s_directoryPath, (filePath) => { return "teste1" + Environment.NewLine + "teste2"; }, "file1.txt");
@@ -138,7 +138,7 @@ namespace TestSharp.Tests
 			Assert.AreEqual("teste2", lines[1]);
 		}
 
-		[TestMethod]
+		[Test]
 		public void ReadLastLinetWithoutLockTest()
 		{
 			var filePath = Path.Combine(s_directoryPath, "file1.txt");
@@ -157,7 +157,7 @@ namespace TestSharp.Tests
 			FileAssert.IsLastLineContent("ReadLastLinetWithoutLockTest2", filePath);
 		}
 
-		[TestMethod]
+		[Test]
 		public void CountLinesTest()
 		{
 			FileHelper.CreateFilesWithContent(s_directoryPath, (filePath) => { return "teste1" + Environment.NewLine + "teste2"; }, "file1.txt");
@@ -166,7 +166,7 @@ namespace TestSharp.Tests
 			Assert.AreEqual(2, FileHelper.CountLines(Path.Combine(s_directoryPath, "file1.txt")));
 		}
 
-		[TestMethod]
+		[Test]
 		public void TouchTest()
 		{
 			var fileName1 = Path.Combine(s_directoryPath, "file1.txt");
@@ -182,7 +182,7 @@ namespace TestSharp.Tests
 			FileAssert.IsLastModification(DateTime.Now, fileName1);
 		}
 
-		[TestMethod]
+		[Test]
 		public void WaitForFileContentContainsTest()
 		{
 			var fileName = Path.Combine(s_directoryPath, "file1.txt");
@@ -218,7 +218,7 @@ namespace TestSharp.Tests
 			
 		}
 
-		[TestMethod]
+		[Test]
 		public void ContainsContentTest()
 		{
 			var fileName = Path.Combine(s_directoryPath, "file1.txt");
@@ -234,7 +234,7 @@ namespace TestSharp.Tests
 
 		}
 
-		[TestMethod]
+		[Test]
 		public void CreateFilesWithContent_GetContentIsNull_ArgumentNullException()
 		{
 			ExceptionAssert.IsThrowing(new ArgumentNullException("getContent"), () =>
@@ -243,7 +243,7 @@ namespace TestSharp.Tests
 			});
 		}
 
-		[TestMethod]
+		[Test]
 		public void CreateFilesWithContent_filesNamesIsNull_ArgumentNullException()
 		{
 			ExceptionAssert.IsThrowing(new ArgumentNullException("filesNames"), () =>

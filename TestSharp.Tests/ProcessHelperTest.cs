@@ -2,137 +2,150 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class ProcessHelperTest
 	{
 		#region Fields
-		private string m_notePadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"notepad.exe");
+		private string m_processPath;
+		private string m_processName;
 		#endregion
 
-		[TestMethod]
-		public void CountInstancesTest()
+		[TestFixtureSetUp]
+		public void Initialize()
 		{
-			var processName = "notepad";
-			ProcessHelper.KillAll(processName);
-			ProcessAssert.IsProcessInstancesCount(0, processName);
-
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
-			ProcessAssert.IsProcessInstancesCount(1, processName);
-
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
-			ProcessAssert.IsProcessInstancesCount(2, processName);
-
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
-			ProcessAssert.IsProcessInstancesCount(3, processName);
-
-			ProcessHelper.KillAll(processName);
-			ProcessAssert.IsProcessInstancesCount(0, processName);
+			if(Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix)
+			{
+				m_processPath = "/Applications/Utilities/Terminal.app";
+				m_processName = "Terminal";
+			}
+			else 
+			{
+				m_processPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"calc.exe");
+				m_processName = "calc";
+			}
 		}
 
-		[TestMethod]
+		[Test]
+		public void CountInstancesTest()
+		{
+			ProcessHelper.KillAll(m_processName);
+			ProcessAssert.IsProcessInstancesCount(0, m_processName);
+
+			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessAssert.IsProcessInstancesCount(1, m_processName);
+
+			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessAssert.IsProcessInstancesCount(2, m_processName);
+
+			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessAssert.IsProcessInstancesCount(3, m_processName);
+
+			ProcessHelper.KillAll(m_processName);
+			ProcessAssert.IsProcessInstancesCount(0, m_processName);
+		}
+
+		[Test]
 		public void KillAllTest()
 		{
-			var processName = "notepad";
-			ProcessHelper.KillAll(processName);
-			ProcessAssert.IsProcessInstancesCount(0, processName);
+			ProcessHelper.KillAll(m_processName);
+			ProcessAssert.IsProcessInstancesCount(0, m_processName);
 
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, String.Empty, false);
 			
-			ProcessAssert.IsProcessInstancesCount(3, processName);
-			ProcessHelper.KillAll(processName);
-			ProcessAssert.IsProcessInstancesCount(0, processName);
+			ProcessAssert.IsProcessInstancesCount(3, m_processName);
+			ProcessHelper.KillAll(m_processName);
+			ProcessAssert.IsProcessInstancesCount(0, m_processName);
 
 			Parallel.For(0, 100, (i) =>
 			{
 				try
 				{
-					ProcessHelper.Run(m_notePadPath, String.Empty, false);
+					ProcessHelper.Run(m_processPath, String.Empty, false);
 				}
 				catch
 				{
 					// Apenas para teste.
 				}
 
-				ProcessHelper.KillAll(processName);
+				ProcessHelper.KillAll(m_processName);
 			});
 		}
 
-		[TestMethod]
+		[Test]
 		public void KillFirstTest()
 		{
-			var processName = "notepad";
-			ProcessHelper.KillFirst(processName);
-			ProcessAssert.IsProcessInstancesCount(0, processName);
+			ProcessHelper.KillFirst(m_processName);
+			ProcessAssert.IsProcessInstancesCount(0, m_processName);
 
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
-			ProcessHelper.Run(m_notePadPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, String.Empty, false);
 
-			ProcessAssert.IsProcessInstancesCount(3, processName);
-			ProcessHelper.KillFirst(processName);
-			ProcessAssert.IsProcessInstancesCount(2, processName);
+			ProcessAssert.IsProcessInstancesCount(3, m_processName);
+			ProcessHelper.KillFirst(m_processName);
+			ProcessAssert.IsProcessInstancesCount(2, m_processName);
 
-			ProcessHelper.KillFirst(processName);
-			ProcessAssert.IsProcessInstancesCount(1, processName);
+			ProcessHelper.KillFirst(m_processName);
+			ProcessAssert.IsProcessInstancesCount(1, m_processName);
 
-			ProcessHelper.KillFirst(processName);
-			ProcessAssert.IsProcessInstancesCount(0, processName);
+			ProcessHelper.KillFirst(m_processName);
+			ProcessAssert.IsProcessInstancesCount(0, m_processName);
 		}
+// TODO: check how to make this test to MacOSX too.
+//		[Test]
+//		public void RunWithFullPathTest()
+//		{
+//			var processName = @"c:\Windows\System32\cmd.exe";
+//			var args = @"dir";
+//
+//			var actualOutput = ProcessHelper.Run(processName, args);
+//			Assert.IsFalse(String.IsNullOrEmpty(actualOutput));
+//			StringAssert.StartsWith("Microsoft", actualOutput);
+//			StringAssert.EndsWith("Out>", actualOutput);
+//
+//			actualOutput = ProcessHelper.Run(processName, args, false);
+//			Assert.IsTrue(String.IsNullOrEmpty(actualOutput));
+//		}
+//
+//		[Test]
+//		public void RunWithSystemVariableTest()
+//		{
+//			var processName = @"%windir%\system32\cmd.exe";
+//			var args = @"dir";
+//
+//			var actualOutput = ProcessHelper.Run(processName, args);
+//			Assert.IsFalse(String.IsNullOrEmpty(actualOutput));
+//			StringAssert.StartsWith("Microsoft", actualOutput);
+//			StringAssert.EndsWith("Out>", actualOutput);
+//
+//			actualOutput = ProcessHelper.Run(processName, args, false);
+//			Assert.IsTrue(String.IsNullOrEmpty(actualOutput));
+//		}
 
-		[TestMethod]
-		public void RunWithFullPathTest()
-		{
-			var processName = @"c:\Windows\System32\cmd.exe";
-			var args = @"dir";
-
-			var actualOutput = ProcessHelper.Run(processName, args);
-			Assert.IsFalse(String.IsNullOrEmpty(actualOutput));
-			StringAssert.StartsWith(actualOutput, "Microsoft");
-			StringAssert.EndsWith(actualOutput, "Out>");
-
-			actualOutput = ProcessHelper.Run(processName, args, false);
-			Assert.IsTrue(String.IsNullOrEmpty(actualOutput));
-		}
-
-		[TestMethod]
-		public void RunWithSystemVariableTest()
-		{
-			var processName = @"%windir%\system32\cmd.exe";
-			var args = @"dir";
-
-			var actualOutput = ProcessHelper.Run(processName, args);
-			Assert.IsFalse(String.IsNullOrEmpty(actualOutput));
-			StringAssert.StartsWith(actualOutput, "Microsoft");
-			StringAssert.EndsWith(actualOutput, "Out>");
-
-			actualOutput = ProcessHelper.Run(processName, args, false);
-			Assert.IsTrue(String.IsNullOrEmpty(actualOutput));
-		}
-
-		[TestMethod]
+		[Test]
 		public void WaitForExitTest()
 		{
 			Parallel.Invoke(
 				() =>
 				{
-					ProcessHelper.Run(m_notePadPath, "", false);
+					ProcessHelper.Run(m_processPath, "", false);
 					var beforeTime = DateTime.Now;
-					ProcessHelper.WaitForExit("notepad");
+					ProcessHelper.WaitForExit(m_processName);
 					Assert.AreNotEqual(beforeTime, DateTime.Now);
 				},
 				() =>
 				{
 					Thread.Sleep(1000);
-					ProcessHelper.KillAll("notepad");
+					ProcessHelper.KillAll(m_processName);
 				}
 				);
 		}

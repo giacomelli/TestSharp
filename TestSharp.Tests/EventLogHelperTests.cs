@@ -2,15 +2,15 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class EventLogHelperTests
 	{
 		#region Tests
-		[TestMethod]
+		[Test]
 		public void ClearAllApplicationEventLogsTest()
 		{
 			EventLogHelper.WriteApplicationEventLogEntry("ClearAllApplicationEventLogsTest");
@@ -21,7 +21,7 @@ namespace TestSharp.Tests
 			Assert.AreEqual(0, EventLogHelper.CountApplicationEventLogEntries());
 		}
 
-		[TestMethod]
+		[Test]
 		public void CountApplicationEventLogEntriesTest()
 		{
 			EventLogHelper.ClearAllApplicationEventLogEntries();
@@ -45,7 +45,7 @@ namespace TestSharp.Tests
 			Assert.AreEqual(1, EventLogHelper.CountApplicationEventLogEntries("CountApplicationEventLogEntriesTest5"));
 		}
 
-		[TestMethod]
+		[Test]
 		public void GetApplicationEventLogEntriesTest()
 		{
 			EventLogHelper.ClearAllApplicationEventLogEntries();
@@ -63,7 +63,7 @@ namespace TestSharp.Tests
 			Assert.AreEqual(5, EventLogHelper.ApplicationEventLogEntries.Count);
 		}
 
-		[TestMethod]
+		[Test]
 		public void WriteApplicationEventLogEntryTest()
 		{
 			EventLogHelper.ClearAllApplicationEventLogEntries();

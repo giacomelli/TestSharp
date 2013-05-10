@@ -2,14 +2,14 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class EnumerableAssertTest
 	{
-		[TestMethod]
+		[Test]
 		public void AllItemsAreNotNullTest()
 		{
 			var notNulls = new string[] { "", "1", "null", "3" };

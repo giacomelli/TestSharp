@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class FlowAssertTest
 	{
-		[TestMethod]
+		[Test]
 		public void IsAtLeastOneOkTest()
 		{
 			FlowAssert.IsAtLeastOneOk(
@@ -37,7 +37,7 @@ namespace TestSharp.Tests
 			});
 		}
 
-		[TestMethod]
+		[Test]
 		public void IsAtLeastOneAttemptOkTest()
 		{
 			ExceptionAssert.IsThrowing(typeof(AssertFailedException), () =>

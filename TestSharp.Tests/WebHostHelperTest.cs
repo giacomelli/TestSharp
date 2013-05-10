@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using TestSharp.Tests.Helpers;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class WebHostHelperTest
 	{
-		[TestMethod]
+		[Test]
 		public void KillAllTest()
 		{
 			WebHostHelper.KillAll();
@@ -18,7 +18,7 @@ namespace TestSharp.Tests
 			ProcessAssert.IsProcessInstancesCount(0, WebHostHelper.WebHostProcessName);
 		}
 
-		[TestMethod]
+		[Test]
 		public void StartTest()
 		{
 			WebHostHelper.KillAll();
@@ -27,7 +27,7 @@ namespace TestSharp.Tests
 			WebHostHelper.KillAll();
 		}
 
-		[TestMethod]
+		[Test]
 		public void StartAndWaitForResponseTest()
 		{
 			WebHostHelper.KillAll();

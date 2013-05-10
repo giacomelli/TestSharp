@@ -2,12 +2,12 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.IO;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class DirectoryHelperTest
 	{
 		#region Fields
@@ -15,19 +15,19 @@ namespace TestSharp.Tests
 		#endregion
 
 		#region Initialize / Cleanup
-		[ClassInitialize]
-		public static void Initialize(TestContext context)
+		[TestFixtureSetUp]
+		public void Initialize()
 		{
 			s_directoryPath = Directory.CreateDirectory("DirectoryHelperTest").FullName;
 		}
 
-		[ClassCleanup]
-		public static void Cleanup()
+		[TestFixtureTearDown]
+		public void Cleanup()
 		{
 			Directory.Delete(s_directoryPath, true);
 		}
 
-		[TestCleanup]
+		[TearDown]
 		public void TestCleanup()
 		{
 			DirectoryHelper.DeleteAllFiles(s_directoryPath, "*.*", true);
@@ -35,7 +35,7 @@ namespace TestSharp.Tests
 		#endregion
 
 		#region Tests
-		[TestMethod]
+		[Test]
 		public void CountAllFilesTest()
 		{
 			FileHelper.CreateFiles(
@@ -90,7 +90,7 @@ namespace TestSharp.Tests
 
 		}
 
-		[TestMethod]
+		[Test]
 		public void CreateIfNotExistsTest()
 		{
 			Directory.Delete(s_directoryPath, true);
@@ -100,7 +100,7 @@ namespace TestSharp.Tests
 			DirectoryAssert.Exists(s_directoryPath);
 		}
 
-		[TestMethod]
+		[Test]
 		public void DeleteAllFilesTest()
 		{
 			DirectoryHelper.DeleteAllFiles("diretorio inexistente");
@@ -141,7 +141,7 @@ namespace TestSharp.Tests
 			DirectoryAssert.IsFilesCount(0, s_directoryPath, "*.doc");
 		}
 
-		[TestMethod]
+		[Test]
 		public void ReadAllFilesTest()
 		{
 			FileHelper.CreateFiles(
@@ -162,7 +162,7 @@ namespace TestSharp.Tests
 			DirectoryAssert.IsAllFilesContent("1", s_directoryPath);
 		}
 
-		[TestMethod]
+		[Test]
 		public void GetDirectoriesInfosTest()
 		{
 			Directory.Delete(s_directoryPath, true);
@@ -181,7 +181,7 @@ namespace TestSharp.Tests
 			Assert.AreEqual(subdir2, infos[1].FullName);
 		}
 
-		[TestMethod]
+		[Test]
 		public void CopyDirectoryTest()
 		{
 			FileHelper.CreateFiles(

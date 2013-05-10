@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using TestSharp.Tests.Helpers;
 
 namespace TestSharp.Tests
 {
-	[TestClass]
+	[TestFixture()]
 	public class VSProjectHelperTest
 	{
-		[TestMethod]
+		[Test]
 		public void GetProjectFolderPathTest()
 		{
 			var actualPath = VSProjectHelper.GetProjectFolderPath(WebSiteStubHelper.ProjectFolderName);
