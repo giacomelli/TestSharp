@@ -20,7 +20,7 @@ namespace TestSharp
 
 			if (actual != expected)
 			{
-				AssertExceptionHelper.ThrowAssert("DateTimeAssert", "AreEqualIgnoringMilliseconds", expected, actual);
+				AssertHelper.ThrowAssert("DateTimeAssert", "AreEqualIgnoringMilliseconds", expected, actual);
 			}
 		}
 		#endregion

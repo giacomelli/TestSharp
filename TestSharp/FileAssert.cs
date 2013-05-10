@@ -18,7 +18,7 @@ namespace TestSharp
 			{
 				if (!File.Exists(filePath))
 				{
-					AssertExceptionHelper.ThrowAssert("FileAssert", "Exists", "true", "false");
+					AssertHelper.ThrowAssert("FileAssert", "Exists", "true", "false");
 				}
 			}
 		}
@@ -31,7 +31,7 @@ namespace TestSharp
 		{
 			if (File.Exists(filePath))
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "NonExists", "true", "false");
+				AssertHelper.ThrowAssert("FileAssert", "NonExists", "true", "false");
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace TestSharp
 
 			if (!actualContent.Equals(expectedContent))
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "IsContent", expectedContent, actualContent);
+				AssertHelper.ThrowAssert("FileAssert", "IsContent", expectedContent, actualContent);
 			}
 		}
 
@@ -59,7 +59,7 @@ namespace TestSharp
 		{
 			if (!FileHelper.ContainsContent(filePath, expectedSubstringContent))
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "ContainsContent", true, false);
+				AssertHelper.ThrowAssert("FileAssert", "ContainsContent", true, false);
 			}
 		}
 
@@ -75,7 +75,7 @@ namespace TestSharp
 
 			if (!actualContent.Equals(expectedContent))
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "AreContentEqual", expectedContent, actualContent);
+				AssertHelper.ThrowAssert("FileAssert", "AreContentEqual", expectedContent, actualContent);
 			}
 		}
 
@@ -90,7 +90,7 @@ namespace TestSharp
 
 			if (!actualLastLineContent.Equals(expectedLastLineContent))
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "IsLastLineContent", expectedLastLineContent, actualLastLineContent);
+				AssertHelper.ThrowAssert("FileAssert", "IsLastLineContent", expectedLastLineContent, actualLastLineContent);
 			}
 		}
 
@@ -105,7 +105,7 @@ namespace TestSharp
 
 			if (!actualCountLines.Equals(expectedCountLines))
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "IsCountLines", expectedCountLines, actualCountLines);
+				AssertHelper.ThrowAssert("FileAssert", "IsCountLines", expectedCountLines, actualCountLines);
 			}
 		}
 
@@ -119,7 +119,7 @@ namespace TestSharp
 
 			if (!String.IsNullOrEmpty(actualContent))
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "IsEmpty", "true", "false");
+				AssertHelper.ThrowAssert("FileAssert", "IsEmpty", "true", "false");
 			}
 		}
 
@@ -134,7 +134,7 @@ namespace TestSharp
 
 			if (String.IsNullOrEmpty(actualContent))
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "IsNonEmpty", "true", "false");
+				AssertHelper.ThrowAssert("FileAssert", "IsNonEmpty", "true", "false");
 			}
 		}
 
@@ -154,7 +154,7 @@ namespace TestSharp
 			}
 			catch
 			{
-				AssertExceptionHelper.ThrowAssert("FileAssert", "IsLastModification", expectedLastModification, actualLastModification);
+				AssertHelper.ThrowAssert("FileAssert", "IsLastModification", expectedLastModification, actualLastModification);
 			}
 		}
 	}

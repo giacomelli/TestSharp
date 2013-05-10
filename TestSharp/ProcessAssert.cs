@@ -19,7 +19,7 @@ namespace TestSharp
 
 			if (actualProcessesCount != expectedProcessesCount)
 			{
-				AssertExceptionHelper.ThrowAssert("ProcessAssert", "IsProcessInstancesCount", expectedProcessesCount, actualProcessesCount);
+				AssertHelper.ThrowAssert("ProcessAssert", "IsProcessInstancesCount", expectedProcessesCount, actualProcessesCount);
 			}
 		}
 	}

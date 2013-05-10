@@ -21,7 +21,7 @@ namespace TestSharp
 
 			if (!actualValue.Equals(expectedValue))
 			{
-				AssertExceptionHelper.ThrowAssert("WmiAssert", "IsPropertyValue", expectedValue, actualValue);
+				AssertHelper.ThrowAssert("WmiAssert", "IsPropertyValue", expectedValue, actualValue);
 			}
 		}
 
@@ -39,7 +39,7 @@ namespace TestSharp
 
 			if (actualValues.Count(v => v.Equals(expectedValue)) == 0)
 			{
-				AssertExceptionHelper.ThrowAssert("WmiAssert", "AtLeastOnePropertyValue", expectedValue, actualValues[0]);
+				AssertHelper.ThrowAssert("WmiAssert", "AtLeastOnePropertyValue", expectedValue, actualValues[0]);
 			}
 		}
 	}

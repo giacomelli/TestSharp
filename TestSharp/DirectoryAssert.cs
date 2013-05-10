@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestSharp
 {
@@ -16,7 +15,7 @@ namespace TestSharp
 		{
 			if (!Directory.Exists(directoryPath))
 			{
-				AssertExceptionHelper.ThrowAssert("DirectoryAssert", "Exists", true, false);
+				AssertHelper.ThrowAssert("DirectoryAssert", "Exists", true, false);
 			}
 		}
 
@@ -33,7 +32,7 @@ namespace TestSharp
 
 			if (actualFilesCount != expectedFilesCount)
 			{
-				AssertExceptionHelper.ThrowAssert("DirectoryAssert", "IsFilesCount", expectedFilesCount, actualFilesCount);
+				AssertHelper.ThrowAssert("DirectoryAssert", "IsFilesCount", expectedFilesCount, actualFilesCount);
 			}
 		}
 
@@ -49,7 +48,7 @@ namespace TestSharp
 
 			if (!actualAllFilesContent.Equals(expectedAllFilesContent))
 			{
-				AssertExceptionHelper.ThrowAssert("DirectoryAssert", "IsAllFilesContent", expectedAllFilesContent, actualAllFilesContent);
+				AssertHelper.ThrowAssert("DirectoryAssert", "IsAllFilesContent", expectedAllFilesContent, actualAllFilesContent);
 			}
 		}
 
@@ -67,7 +66,7 @@ namespace TestSharp
 			// Se a quantidade de arquivos for diferente, então encerra e lança a exceção.
 			if (expectedFiles.Length != actualFiles.Length)
 			{
-				AssertExceptionHelper.ThrowAssert("DirectoryAssert", "AreEqual", expectedFiles.Length + " files", actualFiles.Length + " files");
+				AssertHelper.ThrowAssert("DirectoryAssert", "AreEqual", expectedFiles.Length + " files", actualFiles.Length + " files");
 			}
 
 			for (int i = 0; i < expectedFiles.Length; i++)
@@ -80,7 +79,7 @@ namespace TestSharp
 				// Se o nome de qualquer arquivo for diferente entre os diretório.
 				if (!expectedFileName.Equals(actualFileName))
 				{
-					AssertExceptionHelper.ThrowAssert("DirectoryAssert", "AreEqual", expectedFileName, actualFileName);
+					AssertHelper.ThrowAssert("DirectoryAssert", "AreEqual", expectedFileName, actualFileName);
 				}
 
 				FileAssert.AreContentEqual(expectedFilePath, actualFilePath);
@@ -93,7 +92,7 @@ namespace TestSharp
 			// A quantidade de subdiretórios deve ser a mesma.
 			if (expectedSubdirs.Length != actualSubdirs.Length)
 			{
-				AssertExceptionHelper.ThrowAssert("DirectoryAssert", "AreEqual", expectedSubdirs.Length + " directories", actualSubdirs.Length + " directories");
+				AssertHelper.ThrowAssert("DirectoryAssert", "AreEqual", expectedSubdirs.Length + " directories", actualSubdirs.Length + " directories");
 			}
 
 			for (int i = 0; i < expectedSubdirs.Length; i++)
@@ -104,7 +103,7 @@ namespace TestSharp
 				// O nome dos subdiretórios deve ser o mesmo.
 				if (!expectedDirName.Equals(actualDirName))
 				{
-					AssertExceptionHelper.ThrowAssert("DirectoryAssert", "AreEqual", expectedDirName, actualDirName);
+					AssertHelper.ThrowAssert("DirectoryAssert", "AreEqual", expectedDirName, actualDirName);
 				}
 
 				AreEqual(expectedSubdirs[i], actualSubdirs[i]);

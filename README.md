@@ -1,7 +1,7 @@
 TestSharp
 =========
 
-A set of helpers and asserts for unit and funcional tests
+A set of helpers and asserts for unit and functional tests
 
 Setup
 =========

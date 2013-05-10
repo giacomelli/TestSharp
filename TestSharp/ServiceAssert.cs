@@ -14,7 +14,7 @@ namespace TestSharp
 		{
 			if (!ServiceHelper.IsRunning(serviceName))
 			{
-				AssertExceptionHelper.ThrowAssert("ServiceAssert", "IsRunning", "true", "false");
+				AssertHelper.ThrowAssert("ServiceAssert", "IsRunning", "true", "false");
 			}
 		}
 
@@ -26,7 +26,7 @@ namespace TestSharp
 		{
 			if (!ServiceHelper.IsStopped(serviceName))
 			{
-				AssertExceptionHelper.ThrowAssert("ServiceAssert", "IsStopped", "true", "false");
+				AssertHelper.ThrowAssert("ServiceAssert", "IsStopped", "true", "false");
 			}
 		}
 	}

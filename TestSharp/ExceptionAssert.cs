@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestSharp
 {
@@ -52,7 +51,7 @@ namespace TestSharp
 
 			if (exceptionThrown == null || exceptionsTypes.Count(e => e.FullName.Equals(exceptionThrown.GetType().FullName)) == 0)
 			{
-				AssertExceptionHelper.ThrowAssert("ExceptionAssert", "IsThrowingAny", exceptionsTypes, exceptionThrown);
+				AssertHelper.ThrowAssert("ExceptionAssert", "IsThrowingAny", exceptionsTypes, exceptionThrown);
 			}
 		}
 
@@ -82,15 +81,15 @@ namespace TestSharp
 
 			if (exceptionThrown == null)
 			{
-				AssertExceptionHelper.ThrowAssert("ExceptionAssert", "IsThrowing", "true", "false");
+				AssertHelper.ThrowAssert("ExceptionAssert", "IsThrowing", "true", "false");
 			}
 			else
 			{
-				Assert.AreEqual(expectedExceptionType.FullName, exceptionThrown.GetType().FullName);
+				AssertHelper.AreEqual("ExceptionAssert", "IsThrowing", expectedExceptionType.FullName, exceptionThrown.GetType().FullName);
 
 				if (!String.IsNullOrEmpty(expectedMessage))
 				{
-					Assert.AreEqual(expectedMessage, exceptionThrown.Message);
+					AssertHelper.AreEqual("ExceptionAssert", "IsThrowing", expectedMessage, exceptionThrown.Message);
 				}
 			}
 		}

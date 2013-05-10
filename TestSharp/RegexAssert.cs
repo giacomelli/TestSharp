@@ -23,7 +23,7 @@ namespace TestSharp
 			{
 				if (actualInput == null || !Regex.IsMatch(actualInput, expectedRegexPattern))
 				{
-					AssertExceptionHelper.ThrowAssert("RegexAssert", "IsMatch", expectedRegexPattern, actualInput);
+					AssertHelper.ThrowAssert("RegexAssert", "IsMatch", expectedRegexPattern, actualInput);
 				}
 			}
 			catch (ArgumentException ex)

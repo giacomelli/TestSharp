@@ -15,7 +15,7 @@ namespace TestSharp
 		{
 			if (!Path.IsPathRooted(actualPath))
 			{
-				AssertExceptionHelper.ThrowAssert("PathAssert", "IsPathRooted", true, false);
+				AssertHelper.ThrowAssert("PathAssert", "IsPathRooted", true, false);
 			}
 		}
 	}

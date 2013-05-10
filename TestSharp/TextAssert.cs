@@ -14,7 +14,7 @@ namespace TestSharp
 		{
 			if (!string.IsNullOrEmpty(actual))
 			{
-				AssertExceptionHelper.ThrowAssert("TextAssert", "IsNullOrEmpty", true, false);
+				AssertHelper.ThrowAssert("TextAssert", "IsNullOrEmpty", true, false);
 			}
 		}
 
@@ -26,7 +26,7 @@ namespace TestSharp
 		{
 			if (string.IsNullOrEmpty(actual))
 			{
-				AssertExceptionHelper.ThrowAssert("TextAssert", "IsNotNullOrEmpty", true, false);
+				AssertHelper.ThrowAssert("TextAssert", "IsNotNullOrEmpty", true, false);
 			}
 		}
 	}

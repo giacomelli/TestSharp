@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestSharp
 {
 	/// <summary>
-	/// Utilitária para exceções de assert.
+	/// Asserts utilities.
 	/// </summary>
-	internal static class AssertExceptionHelper
+	internal static class AssertHelper
 	{
 		/// <summary>
-		/// Lança uma AssertFailedException com a mensage formatada.
+		/// Throws the assert.
 		/// </summary>
-		/// <param name="assertClass">O nome da classe de assert.</param>
-		/// <param name="assertMethod">O nome do método de assert.</param>
-		/// <param name="expected">O valor esperado.</param>
-		/// <param name="actual">O valor atual.</param>
+		/// <param name="assertClass">The assert class.</param>
+		/// <param name="assertMethod">The assert method.</param>
+		/// <param name="expected">The expected.</param>
+		/// <param name="actual">The actual.</param>
 		public static void ThrowAssert(string assertClass, string assertMethod, object expected, object actual)
 		{
 			var msg = String.Format(
@@ -27,6 +26,26 @@ namespace TestSharp
 				actual);
 
 			throw new AssertFailedException(msg);
+		}
+
+		/// <summary>
+		/// Assert if x and y are equal
+		/// </summary>
+		/// <param name="assertClass">The assert class.</param>
+		/// <param name="assertMethod">The assert method.</param>
+		/// <param name="expected">The expected value to compare.</param>
+		/// <param name="actual">The actual value to compare.</param>
+		public static void AreEqual(string assertClass, string assertMethod, string expected, string actual)
+		{
+			if (expected == null && actual == null)
+			{
+				return;
+			}
+
+			if (expected == null || actual == null || !expected.Equals(actual, StringComparison.OrdinalIgnoreCase))
+			{
+				ThrowAssert(assertClass, assertMethod, expected, actual);
+			}
 		}
 	}
 }

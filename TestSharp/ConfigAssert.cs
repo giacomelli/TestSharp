@@ -23,7 +23,7 @@ namespace TestSharp
 
 			if (actual != expectedValue)
 			{
-				AssertExceptionHelper.ThrowAssert("ConfigAssert", "IsAppSetting", expectedValue, actual);
+				AssertHelper.ThrowAssert("ConfigAssert", "IsAppSetting", expectedValue, actual);
 			}
 		}
 		#endregion

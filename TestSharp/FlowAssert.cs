@@ -40,7 +40,7 @@ namespace TestSharp
 
 			if (!ok)
 			{
-				AssertExceptionHelper.ThrowAssert("FlowAssert", "IsAtLeastOneOk", true, false);
+				AssertHelper.ThrowAssert("FlowAssert", "IsAtLeastOneOk", true, false);
 			}
 		}
 
@@ -70,7 +70,7 @@ namespace TestSharp
 
 			if (!ok)
 			{
-				AssertExceptionHelper.ThrowAssert("FlowAssert", "TryUntilOk", true, false);
+				AssertHelper.ThrowAssert("FlowAssert", "TryUntilOk", true, false);
 			}
 		}
 	}

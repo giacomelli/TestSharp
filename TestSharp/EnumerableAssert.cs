@@ -17,7 +17,7 @@ namespace TestSharp
 			{
 				if (item == null)
 				{
-					AssertExceptionHelper.ThrowAssert("EnumerableAssert", "AllItemsAreNotNull", true, false);
+					AssertHelper.ThrowAssert("EnumerableAssert", "AllItemsAreNotNull", true, false);
 				}
 			}
 		}
