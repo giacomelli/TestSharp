@@ -15,6 +15,7 @@ namespace TestSharp.Tests
 		#region Fields
 		private string m_processPath;
 		private string m_processName;
+		private string m_processArgs;
 		#endregion
 
 		[TestFixtureSetUp]
@@ -22,13 +23,15 @@ namespace TestSharp.Tests
 		{
 			if(Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix)
 			{
-				m_processPath = "/Applications/Utilities/Terminal.app";
+				m_processPath = "open";
 				m_processName = "Terminal";
+				m_processArgs = "/Applications/Utilities/Terminal.app -n";
 			}
 			else 
 			{
 				m_processPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"calc.exe");
 				m_processName = "calc";
+				m_processArgs = String.Empty;
 			}
 		}
 
@@ -38,13 +41,13 @@ namespace TestSharp.Tests
 			ProcessHelper.KillAll(m_processName);
 			ProcessAssert.IsProcessInstancesCount(0, m_processName);
 
-			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
 			ProcessAssert.IsProcessInstancesCount(1, m_processName);
 
-			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
 			ProcessAssert.IsProcessInstancesCount(2, m_processName);
 
-			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
 			ProcessAssert.IsProcessInstancesCount(3, m_processName);
 
 			ProcessHelper.KillAll(m_processName);
@@ -57,9 +60,9 @@ namespace TestSharp.Tests
 			ProcessHelper.KillAll(m_processName);
 			ProcessAssert.IsProcessInstancesCount(0, m_processName);
 
-			ProcessHelper.Run(m_processPath, String.Empty, false);
-			ProcessHelper.Run(m_processPath, String.Empty, false);
-			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
 			
 			ProcessAssert.IsProcessInstancesCount(3, m_processName);
 			ProcessHelper.KillAll(m_processName);
@@ -69,7 +72,7 @@ namespace TestSharp.Tests
 			{
 				try
 				{
-					ProcessHelper.Run(m_processPath, String.Empty, false);
+					ProcessHelper.Run(m_processPath, m_processArgs, false);
 				}
 				catch
 				{
@@ -86,9 +89,9 @@ namespace TestSharp.Tests
 			ProcessHelper.KillFirst(m_processName);
 			ProcessAssert.IsProcessInstancesCount(0, m_processName);
 
-			ProcessHelper.Run(m_processPath, String.Empty, false);
-			ProcessHelper.Run(m_processPath, String.Empty, false);
-			ProcessHelper.Run(m_processPath, String.Empty, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
+			ProcessHelper.Run(m_processPath, m_processArgs, false);
 
 			ProcessAssert.IsProcessInstancesCount(3, m_processName);
 			ProcessHelper.KillFirst(m_processName);
@@ -137,7 +140,7 @@ namespace TestSharp.Tests
 			Parallel.Invoke(
 				() =>
 				{
-					ProcessHelper.Run(m_processPath, "", false);
+				ProcessHelper.Run(m_processPath, m_processArgs, false);
 					var beforeTime = DateTime.Now;
 					ProcessHelper.WaitForExit(m_processName);
 					Assert.AreNotEqual(beforeTime, DateTime.Now);
