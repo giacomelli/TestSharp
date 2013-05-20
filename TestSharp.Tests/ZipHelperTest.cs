@@ -11,6 +11,10 @@ namespace TestSharp.Tests
 	[TestFixture()]
 	public class ZipHelperTest
 	{
+		#region Fields
+		private string m_zipFilePath = Path.Combine(VSProjectHelper.GetProjectFolderPath("TestSharp.Tests"), "Helpers", "Resources", "ZipHelperTest.zip");
+		#endregion
+
 		[Test]
 		public void ExtractAll_NonExistingZipFilePath_ArgumentException()
 		{
@@ -26,26 +30,24 @@ namespace TestSharp.Tests
 		[Test]
 		public void ExtractAll_NonExistingDestinationDirectoryPath_ArgumentException()
 		{
-			var zipFilePath = Path.Combine(VSProjectHelper.GetProjectFolderPath("TestSharp.Tests"), @"Helpers\Resources\ZipHelperTest.zip");
 			var dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TESTDIR");
 						
 			DirectoryHelper.DeleteIfNotExists(dirPath);
 
 			ExceptionAssert.IsThrowing(new ArgumentException("Diretório destino '" + dirPath + "' não existe.", "destinationDirectoryPath"), () =>
 			{
-				ZipHelper.ExtractAll(zipFilePath, dirPath);
+				ZipHelper.ExtractAll(m_zipFilePath, dirPath);
 			});
 		}
 
 		[Test]
 		public void ExtractAll_ValidZipAndDirectory_AllFilesExtracteds()
 		{
-			var zipFilePath = Path.Combine(VSProjectHelper.GetProjectFolderPath("TestSharp.Tests"), @"Helpers\Resources\ZipHelperTest.zip");			
 			var dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TESTDIR");
 			DirectoryHelper.CreateIfNotExists(dirPath);
 			DirectoryHelper.DeleteAllFiles(dirPath);
 
-			ZipHelper.ExtractAll(zipFilePath, dirPath);
+			ZipHelper.ExtractAll(m_zipFilePath, dirPath);
 
 			DirectoryAssert.IsFilesCount(5, dirPath, "*.*", true);
 			DirectoryAssert.IsFilesCount(5, dirPath, "*.log", true);

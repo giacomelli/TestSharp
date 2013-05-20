@@ -10,12 +10,13 @@ namespace TestSharp.Tests
 		public void KillAllTest()
 		{
 			WebHostHelper.KillAll();
-			ProcessAssert.IsProcessInstancesCount(0, WebHostHelper.WebHostProcessName);
+			Assert.AreEqual (0, WebHostHelper.InstancesCount);
 
 			WebSiteStubHelper.Start();
-			ProcessAssert.IsProcessInstancesCount(1, WebHostHelper.WebHostProcessName);
+			Assert.AreEqual (1, WebHostHelper.InstancesCount);
+
 			WebHostHelper.KillAll();
-			ProcessAssert.IsProcessInstancesCount(0, WebHostHelper.WebHostProcessName);
+			Assert.AreEqual (0, WebHostHelper.InstancesCount);
 		}
 
 		[Test]
@@ -23,7 +24,7 @@ namespace TestSharp.Tests
 		{
 			WebHostHelper.KillAll();
 			WebSiteStubHelper.Start();
-			ProcessAssert.IsProcessInstancesCount(1, WebHostHelper.WebHostProcessName);
+			Assert.AreEqual (1, WebHostHelper.InstancesCount);
 			WebHostHelper.KillAll();
 		}
 
@@ -32,7 +33,7 @@ namespace TestSharp.Tests
 		{
 			WebHostHelper.KillAll();
 			WebSiteStubHelper.StartAndWaitForResponse();
-			ProcessAssert.IsProcessInstancesCount(1, WebHostHelper.WebHostProcessName);
+			Assert.AreEqual (1, WebHostHelper.InstancesCount);
 			WebHostHelper.KillAll();
 		}
 	}

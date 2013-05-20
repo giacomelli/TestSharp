@@ -11,7 +11,7 @@ namespace TestSharp.Tests
 		[SetUp]
 		public void TestInitialize()
 		{
-			WebSiteStubHelper.Start();
+			WebSiteStubHelper.StartAndWaitForResponse();
 		}
 
 		[TearDown]
@@ -44,7 +44,7 @@ namespace TestSharp.Tests
 		[Test]
 		public void RequestTest()
 		{			
-			var actual = NetHelper.GetContent(WebSiteStubHelper.VirtualPath);
+			NetHelper.GetContent(WebSiteStubHelper.VirtualPath);
 
 			FlowAssert.IsAtLeastOneOk(
 			() => 

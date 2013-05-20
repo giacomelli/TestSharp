@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿#if WIN
+using NUnit.Framework;
 
 namespace TestSharp.Tests
 {
@@ -71,3 +72,4 @@ namespace TestSharp.Tests
 		#endregion
 	}
 }
+#endif

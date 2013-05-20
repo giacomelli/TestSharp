@@ -1,4 +1,5 @@
-﻿using System.ServiceProcess;
+﻿#if WIN
+using System.ServiceProcess;
 using System.Security.Permissions;
 
 namespace TestSharp
@@ -104,3 +105,4 @@ namespace TestSharp
         #endregion
 	}
 }
+#endif

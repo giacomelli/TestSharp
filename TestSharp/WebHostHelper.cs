@@ -17,17 +17,8 @@ namespace TestSharp
 	/// </summary>
     public static class WebHostHelper
     {
-		#region Properties
-		/// <summary>
-		/// Obtém o nome do processo do servidor de desenvolvimento do VS.
-		/// </summary>
-		public static string WebHostProcessName { get; private set; }
-		
-		/// <summary>
-		/// Obtém o caminho do executável do servidor de desenvolvimento do VS.
-		/// </summary>
-		public static string WebDevWebServerPath { get; private set; }
-
+		#region Fields
+		private static Queue<Process> s_webHostProcesses = new Queue<Process> ();
 		#endregion
 
 		#region Constructor
@@ -36,6 +27,7 @@ namespace TestSharp
 		SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations")]
 		static WebHostHelper()
         {
+#if WIN
 			var frameworkVersion = RuntimeEnvironment.GetSystemVersion();
 
 			switch (frameworkVersion)
@@ -65,9 +57,36 @@ namespace TestSharp
 			}
 
 			WebHostProcessName = Path.GetFileNameWithoutExtension(WebDevWebServerPath);
+#else
+			WebDevWebServerPath = "xsp4";
+			WebHostProcessName = "xsp4";
+#endif
 			KillAll();
         }
         #endregion
+
+		#region Properties
+		/// <summary>
+		/// Obtém o nome do processo do servidor de desenvolvimento do VS.
+		/// </summary>
+		public static string WebHostProcessName { get; private set; }
+
+		/// <summary>
+		/// Obtém o caminho do executável do servidor de desenvolvimento do VS.
+		/// </summary>
+		public static string WebDevWebServerPath { get; private set; }
+
+		/// <summary>
+		/// Gets the instances count of running web hosts.
+		/// </summary>
+		/// <value>The instances count.</value>
+		public static int InstancesCount { 
+			get {
+				return s_webHostProcesses.Count;
+			}
+		}
+		#endregion
+
 		
         #region Methods
 		/// <summary>
@@ -76,7 +95,10 @@ namespace TestSharp
 		[EnvironmentPermission(SecurityAction.LinkDemand)]
 		public static void KillAll()
 		{
-			ProcessHelper.KillAll(WebHostProcessName);
+			while(s_webHostProcesses.Count > 0)
+			{
+				ProcessHelper.Kill (s_webHostProcesses.Dequeue().Id);
+			}
 		}
 
 		/// <summary>
@@ -86,10 +108,19 @@ namespace TestSharp
 		/// <param name="port">Porta que deve ser utilizada no WebDev.WebServer.</param>
 		[EnvironmentPermission(SecurityAction.LinkDemand)]
 		public static void Start(string projectFolderName, int port)
-        {			
-            var path = Path.GetFullPath(VSProjectHelper.GetProjectFolderPath(projectFolderName));			
+        {	
+			var path = Path.GetFullPath(VSProjectHelper.GetProjectFolderPath(projectFolderName));
+#if WIN
             var arguments = String.Format(CultureInfo.InvariantCulture, "/port:{0} /vpath:/ /path:\"{1}\"", port, path);
-            Process.Start(WebDevWebServerPath, arguments);
+#else
+						
+			var arguments = String.Format(CultureInfo.InvariantCulture, "--port {0} --root {1} --nonstop", port, path);
+#endif
+			var startInfo = new ProcessStartInfo ();
+			startInfo.FileName = WebDevWebServerPath;
+			startInfo.Arguments = arguments;
+			startInfo.UseShellExecute = false;
+			s_webHostProcesses.Enqueue(Process.Start (startInfo)); 
         }
 
 		/// <summary>

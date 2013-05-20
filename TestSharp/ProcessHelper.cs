@@ -31,11 +31,11 @@ namespace TestSharp
 				var startInfo = p.StartInfo;
 				startInfo.CreateNoWindow = true;
 				startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+				startInfo.UseShellExecute = false;
 
 				if (waitForExit)
 				{
 					startInfo.StandardOutputEncoding = Encoding.GetEncoding("ibm850");
-					startInfo.UseShellExecute = false;
 					startInfo.RedirectStandardOutput = true;
 				}
 
@@ -46,7 +46,11 @@ namespace TestSharp
 				}
 				else
 				{
+#if WIN
 					startInfo.FileName = Path.GetFullPath(exePath);
+#else
+					startInfo.FileName = exePath;
+#endif
 				}
 				
 				startInfo.Arguments = arguments;
@@ -69,8 +73,13 @@ namespace TestSharp
 		/// <param name="processName">Nome do processo.</param>
 		/// <returns>Número de instâncias do processo.</returns>        
 		public static int CountInstances(string processName)
-		{            
-			Thread.Sleep(5000); // Feio, mas necessário para evitar que instâncias que estão em finalização sejam contados.
+		{ 
+			// Ugly, but needed to avoid finalizing instances to be counted.
+#if WIN
+			Thread.Sleep(5000); 
+#else	
+			Thread.Sleep(2000); 
+#endif
 			return Process.GetProcessesByName(processName).Length;            
 		}
 
@@ -85,6 +94,19 @@ namespace TestSharp
 			if (ps.Length > 0)
 			{
 				ps[0].WaitForExit();
+			}
+		}
+
+		/// <summary>
+		/// Kill the process with the specified ID.
+		/// </summary>
+		/// <param name="id">Identifier.</param>
+		public static void Kill (int id)
+		{
+			var ps = Process.GetProcessById (id);
+
+			if (ps != null) {
+				ps.Kill ();
 			}
 		}
 
