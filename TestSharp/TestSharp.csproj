@@ -7,11 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A36D353D-729E-45DC-8880-45AE72BFE12D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestSharp</RootNamespace>
     <AssemblyName>TestSharp</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
