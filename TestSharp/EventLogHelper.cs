@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿#if WIN
+using System.Diagnostics;
 using System.Linq;
 
 namespace TestSharp
@@ -92,3 +93,4 @@ namespace TestSharp
 		#endregion
 	}
 }
+#endif

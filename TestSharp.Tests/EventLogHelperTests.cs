@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if WIN
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,3 +89,4 @@ namespace TestSharp.Tests
 		#endregion
 	}
 }
+#endif

@@ -76,10 +76,10 @@ namespace TestSharp.Tests
 			DirectoryHelper.DeleteAllFiles(s_directoryPath);
 			FileHelper.CreateFiles(
 				s_directoryPath,
-				@"a\text1.txt",
-				@"b\text2.txt",
-				@"c\doc1.doc",
-				@"doc2.pdf");
+				Path.Combine("a", "text1.txt"),
+				Path.Combine("b", "text2.txt"),
+	            Path.Combine("c", "doc1.doc"),
+			    "doc2.pdf");
 
 			DirectoryAssert.IsFilesCount(1, s_directoryPath, "*.*");
 			DirectoryAssert.IsFilesCount(4, s_directoryPath, "*.*", true);
@@ -156,7 +156,7 @@ namespace TestSharp.Tests
 			File.WriteAllText(Path.Combine(s_directoryPath, "text1.txt"), "22");
 			File.WriteAllText(Path.Combine(s_directoryPath, "text2.txt"), "333");
 
-			DirectoryAssert.IsAllFilesContent("1\r\n22\r\n333", s_directoryPath);
+			DirectoryAssert.IsAllFilesContent(string.Format("1{0}22{0}333", Environment.NewLine), s_directoryPath);
 
 			DirectoryHelper.DeleteAllFiles(s_directoryPath, "*.txt");
 			DirectoryAssert.IsAllFilesContent("1", s_directoryPath);

@@ -23,9 +23,9 @@ namespace TestSharp.Tests
 		{
 			if(Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix)
 			{
-				m_processPath = "open";
+				m_processPath = "/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal";
 				m_processName = "Terminal";
-				m_processArgs = "/Applications/Utilities/Terminal.app -n";
+				m_processArgs = String.Empty;
 			}
 			else 
 			{
@@ -76,7 +76,7 @@ namespace TestSharp.Tests
 				}
 				catch
 				{
-					// Apenas para teste.
+					// Just for test.
 				}
 
 				ProcessHelper.KillAll(m_processName);

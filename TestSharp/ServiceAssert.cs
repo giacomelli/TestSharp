@@ -1,4 +1,4 @@
-﻿
+﻿#if WIN
 namespace TestSharp
 {
 	/// <summary>
@@ -31,3 +31,4 @@ namespace TestSharp
 		}
 	}
 }
+#endif
