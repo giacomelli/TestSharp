@@ -161,8 +161,7 @@ namespace TestSharp.Tests
 		public void CountLinesTest()
 		{
 			FileHelper.CreateFilesWithContent(s_directoryPath, (filePath) => { return "teste1" + Environment.NewLine + "teste2"; }, "file1.txt");
-			var lines = FileHelper.ReadAllLines(Path.Combine(s_directoryPath, "file1.txt"));
-
+		
 			Assert.AreEqual(2, FileHelper.CountLines(Path.Combine(s_directoryPath, "file1.txt")));
 		}
 
