@@ -44,6 +44,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
+    <Reference Include="nunit.framework" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertFailedException.cs" />
@@ -83,5 +84,6 @@
     <Compile Include="WmiAssert.cs" />
     <Compile Include="WmiHelper.cs" />
     <Compile Include="ZipHelper.cs" />
+    <Compile Include="TimeAssert.cs" />
   </ItemGroup>
 </Project>
