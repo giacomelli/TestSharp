@@ -1,35 +1,42 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharp", "TestSharp\TestSharp.csproj", "{A36D353D-729E-45DC-8880-45AE72BFE12D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharp.Tests", "TestSharp.Tests\TestSharp.Tests.csproj", "{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSharp.WebSiteStubTest", "TestSharp.WebSiteStubTest\TestSharp.WebSiteStubTest.csproj", "{4DEF53A7-2D29-4235-9024-4F1D91D789F5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9D8DD4AE-0456-4A85-80CD-E4D647468F48}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		WIN|Any CPU = WIN|Any CPU
 		OSX|Any CPU = OSX|Any CPU
+		WIN|Any CPU = WIN|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4DEF53A7-2D29-4235-9024-4F1D91D789F5}.OSX|Any CPU.ActiveCfg = OSX|Any CPU
-		{4DEF53A7-2D29-4235-9024-4F1D91D789F5}.OSX|Any CPU.Build.0 = OSX|Any CPU
-		{4DEF53A7-2D29-4235-9024-4F1D91D789F5}.WIN|Any CPU.ActiveCfg = WIN|Any CPU
-		{4DEF53A7-2D29-4235-9024-4F1D91D789F5}.WIN|Any CPU.Build.0 = WIN|Any CPU
-		{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}.OSX|Any CPU.ActiveCfg = OSX|Any CPU
-		{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}.OSX|Any CPU.Build.0 = OSX|Any CPU
-		{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}.WIN|Any CPU.ActiveCfg = WIN|Any CPU
-		{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}.WIN|Any CPU.Build.0 = WIN|Any CPU
 		{A36D353D-729E-45DC-8880-45AE72BFE12D}.OSX|Any CPU.ActiveCfg = OSX|Any CPU
 		{A36D353D-729E-45DC-8880-45AE72BFE12D}.OSX|Any CPU.Build.0 = OSX|Any CPU
 		{A36D353D-729E-45DC-8880-45AE72BFE12D}.WIN|Any CPU.ActiveCfg = WIN|Any CPU
 		{A36D353D-729E-45DC-8880-45AE72BFE12D}.WIN|Any CPU.Build.0 = WIN|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = TestSharp\TestSharp.csproj
+		{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}.OSX|Any CPU.ActiveCfg = OSX|Any CPU
+		{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}.OSX|Any CPU.Build.0 = OSX|Any CPU
+		{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}.WIN|Any CPU.ActiveCfg = WIN|Any CPU
+		{7D26C919-781D-47B4-B6DD-5D6CF49CA4D5}.WIN|Any CPU.Build.0 = WIN|Any CPU
+		{4DEF53A7-2D29-4235-9024-4F1D91D789F5}.OSX|Any CPU.ActiveCfg = OSX|Any CPU
+		{4DEF53A7-2D29-4235-9024-4F1D91D789F5}.OSX|Any CPU.Build.0 = OSX|Any CPU
+		{4DEF53A7-2D29-4235-9024-4F1D91D789F5}.WIN|Any CPU.ActiveCfg = WIN|Any CPU
+		{4DEF53A7-2D29-4235-9024-4F1D91D789F5}.WIN|Any CPU.Build.0 = WIN|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = TestSharp\TestSharp.csproj
 	EndGlobalSection
 EndGlobal
