@@ -66,7 +66,7 @@ namespace TestSharp
 		private static string GetFileConfigPath(string projectFolderName)
 		{
 			var folderPath = VSProjectHelper.GetProjectFolderPath(projectFolderName);
-			var fileConfig = Path.Combine(folderPath, "web.config");
+			var fileConfig = Path.Combine(folderPath, "Web.config");
 
 			// Tenta ler um web.config, caso o arquivo não exista, então tenta ler o app.config.
 			if (!File.Exists(fileConfig))
