@@ -23,8 +23,8 @@ namespace TestSharp.Tests
 		{
 			if(Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix)
 			{
-				m_processPath = "/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal";
-				m_processName = "Terminal";
+				m_processPath = "vim";
+				m_processName = "vim";
 				m_processArgs = String.Empty;
 			}
 			else 
