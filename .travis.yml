@@ -1,7 +1,7 @@
 language: c
  
 install:
-  - sudo apt-get install mono-devel mono-gmcs nunit-console mono-xsp mono-xsp-base
+  - sudo apt-get install mono-devel mono-gmcs nunit-console mono-xsp
   - mozroots --import --sync
  
 script:
