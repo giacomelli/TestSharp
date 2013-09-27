@@ -1,9 +1,8 @@
 language: c
  
 install:
-  - sudo apt-get install mono-devel mono-gmcs nunit-console
+  - sudo apt-get install mono-devel mono-gmcs nunit-console mono-xsp mono-xsp-base
   - mozroots --import --sync
-  - xsp
  
 script:
   - xbuild ./TestSharp.sln /property:"Configuration=OSX;Platform=Any CPU"
