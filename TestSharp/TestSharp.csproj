@@ -31,6 +31,7 @@
     <OutputPath>bin\MacOSX</OutputPath>
     <WarningLevel>4</WarningLevel>
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS;OSX</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

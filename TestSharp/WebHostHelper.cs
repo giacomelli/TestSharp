@@ -58,8 +58,8 @@ namespace TestSharp
 
 			WebHostProcessName = Path.GetFileNameWithoutExtension(WebDevWebServerPath);
 #else
-			WebDevWebServerPath = "xsp4";
-			WebHostProcessName = "xsp4";
+			WebDevWebServerPath = "xsp";
+			WebHostProcessName = "xsp";
 #endif
 			KillAll();
         }

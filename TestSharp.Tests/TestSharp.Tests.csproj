@@ -27,6 +27,7 @@
     <OutputPath>bin\MacOSX</OutputPath>
     <WarningLevel>4</WarningLevel>
     <DefineConstants>DEBUG;OSX</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

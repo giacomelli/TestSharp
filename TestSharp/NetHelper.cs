@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Net;
 using System.Text;
+using System;
+using System.Diagnostics;
 
 namespace TestSharp
 {
@@ -148,8 +150,9 @@ namespace TestSharp
 				GetContent(url);
 				return true;
 			}
-			catch
+			catch(Exception ex)
 			{
+				Debug.WriteLine (ex.Message);
 				return false;
 			}
 		}
