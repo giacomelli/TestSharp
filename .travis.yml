@@ -5,5 +5,5 @@ install:
   - mozroots --import --sync
  
 script:
-  - xbuild ./TestSharp.sln /p:Configuration="OSX" /p:Platform="Any CPU" /p:DefineConstants="TRAVIS_CI;CODE_ANALYSIS;OSX"
+  - xbuild ./TestSharp.sln /p:"Configuration=OSX" /p:"Platform=Any CPU" /p:"DefineConstants=TRAVIS_CI;CODE_ANALYSIS;OSX"
   - nunit-console ./TestSharp.Tests/bin/MacOSX/TestSharp.Tests.dll
