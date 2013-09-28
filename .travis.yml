@@ -1,9 +1,9 @@
 language: c
  
 install:
-  - sudo apt-get install mono-devel mono-gmcs nunit-console mono-xsp vim
+  - sudo apt-get install mono-devel mono-gmcs nunit-console mono-xsp
   - mozroots --import --sync
  
 script:
-  - xbuild ./TestSharp.sln /property:"Configuration=OSX;Platform=Any CPU"
+  - xbuild ./TestSharp.sln /property:"Configuration=OSX;Platform=Any CPU;DefineConstants=TRAVIS_CI;CODE_ANALYSIS;OSX"
   - nunit-console ./TestSharp.Tests/bin/MacOSX/TestSharp.Tests.dll

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !TRAVIS_CI
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -154,3 +155,4 @@ namespace TestSharp.Tests
 		}
 	}
 }
+#endif
