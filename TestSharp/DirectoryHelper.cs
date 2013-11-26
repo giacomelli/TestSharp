@@ -74,36 +74,48 @@ namespace TestSharp
 			}
 		}
 
-		/// <summary>
-		/// Lê todos os arquivos de um diretório
-		/// </summary>
-		/// <param name="directoryPath">Caminho do diretório.</param>
-		/// <param name="filePattern">Filtro para os arquivos a serem lidos.</param>
-		/// <returns>O conteúdo de todos os arquivos concatenados</returns>
+        /// <summary>
+        /// Read all files contents.
+        /// </summary>
+        /// <param name="directoryPath">The directory path.</param>
+        /// <param name="filePattern">The file search pattern.</param>
+        /// <returns>The all files content.</returns>
 		public static string ReadAllFiles(string directoryPath, string filePattern = "*.*")
 		{
-			var files = Directory.GetFiles(directoryPath, filePattern);
-			var result = new StringBuilder();
-
-			foreach (var f in files)
-			{
-				var fileContent = FileHelper.ReadAllTextWithoutLock(f);
-
-				if (!String.IsNullOrEmpty(fileContent))
-				{
-					if (result.Length == 0)
-					{
-						result.Append(fileContent);
-					}
-					else
-					{
-						result.AppendFormat("{0}{1}", Environment.NewLine, fileContent);
-					}
-				}
-			}
-
-			return result.ToString();
+            return ReadAllFiles(directoryPath, Encoding.UTF8, filePattern);	
 		}
+
+        /// <summary>
+        /// Read all files contents.
+        /// </summary>
+        /// <param name="directoryPath">The directory path.</param>
+        /// <param name="encoding">The files encoding.</param>
+        /// <param name="filePattern">The file search pattern.</param>
+        /// <returns>The all files content.</returns>
+        public static string ReadAllFiles(string directoryPath, Encoding encoding, string filePattern = "*.*")
+        {
+            var files = Directory.GetFiles(directoryPath, filePattern);
+            var result = new StringBuilder();
+
+            foreach (var f in files)
+            {
+                var fileContent = FileHelper.ReadAllTextWithoutLock(f, encoding);
+
+                if (!String.IsNullOrEmpty(fileContent))
+                {
+                    if (result.Length == 0)
+                    {
+                        result.Append(fileContent);
+                    }
+                    else
+                    {
+                        result.AppendFormat("{0}{1}", Environment.NewLine, fileContent);
+                    }
+                }
+            }
+
+            return result.ToString();
+        }
 
 		/// <summary>
 		/// Retornar os DirectoryInfo dos diretórios
