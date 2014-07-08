@@ -3,7 +3,7 @@
 namespace TestSharp
 {
 	/// <summary>
-	/// Excepetion used when a assertion fialed.
+	/// Excepetion used when an assertion failed.
 	/// </summary>
 	public class AssertFailedException : Exception
 	{

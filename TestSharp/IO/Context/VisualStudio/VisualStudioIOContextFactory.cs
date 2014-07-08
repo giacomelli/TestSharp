@@ -2,14 +2,14 @@
 namespace TestSharp.IO.Context.VisualStudio
 {
 	/// <summary>
-	/// Cria uma fábrica de contexto de IO para os testes quando executados no Visual Studio.
+	/// Visual Studio IO context factory.
 	/// </summary>
 	internal class VisualStudioIOContextFactory : IIOContextFactory
 	{
 		/// <summary>
-		/// Cria um descobridor de diretórios.
+		/// Creates a directory discoverer.
 		/// </summary>
-		/// <returns>O descobridor de diretórios.</returns>
+		/// <returns>The directory discoverer.</returns>
 		public IDirectoryDiscoverer CreateDirectoryDiscoverer()
 		{
 			return new VisualStudioDirectoryDiscoverer();

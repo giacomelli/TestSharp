@@ -1,16 +1,15 @@
-﻿
-namespace TestSharp.IO.Context
+﻿namespace TestSharp.IO.Context
 {
 	/// <summary>
-	/// Define uma factory para contexto de IO durante a execução dos testes.
+	/// Defines the interface o IO context's factory.
 	/// </summary>
 	internal interface IIOContextFactory
 	{
 		#region Methods
 		/// <summary>
-		/// Cria um descobridor de diretórios.
+		/// Creates a directory discoverer.
 		/// </summary>
-		/// <returns>O descobridor de diretórios.</returns>
+		/// <returns>The directory discoverer.</returns>
 		IDirectoryDiscoverer CreateDirectoryDiscoverer();
 		#endregion
 	}

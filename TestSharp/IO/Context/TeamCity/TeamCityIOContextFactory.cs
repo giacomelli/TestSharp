@@ -2,14 +2,14 @@
 namespace TestSharp.IO.Context.TeamCity
 {
 	/// <summary>
-	/// Cria uma fábrica de contexto de IO para os testes quando executados no TeamCity.
+	/// TeamCity IO context factory.
 	/// </summary>
 	internal class TeamCityIOContextFactory : IIOContextFactory
 	{
 		/// <summary>
-		/// Cria um descobridor de diretórios.
+		/// Creates a directory discoverer.
 		/// </summary>
-		/// <returns>O descobridor de diretórios.</returns>
+		/// <returns>The directory discoverer.</returns>
 		public IDirectoryDiscoverer CreateDirectoryDiscoverer()
 		{
 			return new TeamCityDirectoryDiscoverer();

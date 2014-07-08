@@ -5,18 +5,16 @@ using System.Linq;
 namespace TestSharp.IO.Context.TeamCity
 {
 	/// <summary>
-	/// Descobridor de diretórios para os testes quando executados no TeamCity.
+	/// TeamCity directory discoverer.
 	/// </summary>
 	internal class TeamCityDirectoryDiscoverer : IDirectoryDiscoverer
 	{
 		#region Public Methods
 		/// <summary>
-		/// Tenta descobrir o camanhio do diretório com o nome informado.
+		/// Try to discover the path of the folder with the specified name.
 		/// </summary>
-		/// <param name="folderName">O nome do diretório.</param>
-		/// <returns>
-		/// O caminho do diretório.
-		/// </returns>
+		/// <returns>The path.</returns>
+		/// <param name="folderName">The folder name.</param>
 		public string DiscoverPath(string folderName)
 		{
 			var dir = Directory.GetCurrentDirectory().ToUpperInvariant();
@@ -38,6 +36,12 @@ namespace TestSharp.IO.Context.TeamCity
 		#endregion
 
 		#region Private Methods
+		/// <summary>
+		/// Discovers the path.
+		/// </summary>
+		/// <returns>The path.</returns>
+		/// <param name="folderName">Folder name.</param>
+		/// <param name="rootPath">Root path.</param>
 		private string DiscoverPath(string folderName, string rootPath)
 		{
 			var fullPath = Path.Combine(rootPath, folderName);

@@ -1,16 +1,15 @@
-﻿
-namespace TestSharp.IO.Context
+﻿namespace TestSharp.IO.Context
 {
 	/// <summary>
-	/// Um descobridor de diretórios durante a execução dos testes.
+	/// Defines an interface for a directory discoverer.
 	/// </summary>
 	internal interface IDirectoryDiscoverer
 	{
 		/// <summary>
-		/// Tenta descobrir o camanhio do diretório com o nome informado.
+		/// Try to discover the path of the folder with the specified name.
 		/// </summary>
-		/// <param name="folderName">O nome do diretório.</param>
-		/// <returns>O caminho do diretório.</returns>
+		/// <returns>The path.</returns>
+		/// <param name="folderName">The folder name.</param>
 		string DiscoverPath(string folderName);
 	}
 }

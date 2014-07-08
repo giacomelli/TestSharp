@@ -3,18 +3,16 @@
 namespace TestSharp.IO.Context.VisualStudio
 {
 	/// <summary>
-	/// Descobridor de diretórios para os testes quando executados no Visual Studio.
+	/// Visual Studio directory discoverer.
 	/// </summary>
 	internal class VisualStudioDirectoryDiscoverer : IDirectoryDiscoverer
 	{
 		#region Public Methods
 		/// <summary>
-		/// Tenta descobrir o camanhio do diretório com o nome informado.
+		/// Try to discover the path of the folder with the specified name.
 		/// </summary>
-		/// <param name="folderName">O nome do diretório.</param>
-		/// <returns>
-		/// O caminho do diretório.
-		/// </returns>
+		/// <returns>The path.</returns>
+		/// <param name="folderName">The folder name.</param>
 		public string DiscoverPath(string folderName)
 		{
 			return DiscoverFullPath(folderName, Directory.GetCurrentDirectory());
@@ -22,6 +20,12 @@ namespace TestSharp.IO.Context.VisualStudio
 		#endregion
 
 		#region Private Methods
+		/// <summary>
+		/// Discovers the full path.
+		/// </summary>
+		/// <returns>The full path.</returns>
+		/// <param name="folderName">Folder name.</param>
+		/// <param name="rootFolderPath">Root folder path.</param>
 		private static string DiscoverFullPath(string folderName, string rootFolderPath)
 		{
 			var path = Path.Combine(rootFolderPath, folderName);

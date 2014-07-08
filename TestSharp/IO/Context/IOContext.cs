@@ -4,9 +4,9 @@ using TestSharp.IO.Context.VisualStudio;
 namespace TestSharp.IO.Context
 {
 	/// <summary>
-	/// Contexto de IO utilizando internamente pelos utilitários durante a execução dos testes.
+	/// Defines the IO context used internally by utilities during the tests executing.
 	/// </summary>
-	internal static class IOContext
+	internal static class IOContext : IDirectoryDiscoverer
 	{
 		#region Fields
 		private static IDirectoryDiscoverer s_visualStudioDirectoryDiscover = new VisualStudioIOContextFactory().CreateDirectoryDiscoverer();
@@ -15,10 +15,10 @@ namespace TestSharp.IO.Context
 		
 		#region Public Methods
 		/// <summary>
-		/// Tenta descobrir qual o caminho da pasta com o nome informado.
+		/// Try to discover the path of the folder with the specified name.
 		/// </summary>
-		/// <param name="folderName">O nome da pasta.</param>
-		/// <returns>O caminho da pasta informada. Se não for localizada será retornado nulo.</returns>
+		/// <returns>The path.</returns>
+		/// <param name="folderName">The folder name.</param>
 		public static string DiscoverPath(string folderName)
 		{
 			var fullPath = s_visualStudioDirectoryDiscover.DiscoverPath(folderName);
