@@ -6,7 +6,7 @@ namespace TestSharp.IO.Context
 	/// <summary>
 	/// Defines the IO context used internally by utilities during the tests executing.
 	/// </summary>
-	internal static class IOContext : IDirectoryDiscoverer
+	internal static class IOContext
 	{
 		#region Fields
 		private static IDirectoryDiscoverer s_visualStudioDirectoryDiscover = new VisualStudioIOContextFactory().CreateDirectoryDiscoverer();
