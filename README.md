@@ -1,6 +1,6 @@
 TestSharp
 =========
-[![Build Status](https://travis-ci.org/giacomelli/GeneticSharp.png?branch=master)](https://travis-ci.org/giacomelli/GeneticSharp)
+[![Build Status](https://travis-ci.org/giacomelli/TestSharp.png?branch=master)](https://travis-ci.org/giacomelli/TestSharp)
 
 A set of helpers and asserts for unit and functional tests
 
