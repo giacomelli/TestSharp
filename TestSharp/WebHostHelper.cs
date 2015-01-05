@@ -15,8 +15,8 @@ namespace TestSharp
 	/// <summary>
 	/// Utilitária para auxiliar na inicialização e finalização do servidor de desenvolvimento do VS.
 	/// </summary>
-    public static class WebHostHelper
-    {
+	public static class WebHostHelper
+	{
 		#region Fields
 		private static Queue<Process> s_webHostProcesses = new Queue<Process> ();
 		#endregion
@@ -26,33 +26,44 @@ namespace TestSharp
 		SuppressMessage ("Microsoft.Globalization", "CA1302:DoNotHardcodeLocaleSpecificStrings", MessageId=@"\Program Files (x86)\"), 
 		SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations")]
 		static WebHostHelper()
-        {
+		{
 #if WIN
+			WebDevWebServerPath = null;
 			var frameworkVersion = RuntimeEnvironment.GetSystemVersion();
+			var possiblePaths = new List<string>();
 
 			switch (frameworkVersion)
 			{
 				case "v2.0.50727":
-					WebDevWebServerPath = @"C:\Program Files\Common Files\microsoft shared\DevServer\9.0\WebDev.WebServer.EXE";
+					possiblePaths.Add(@"C:\Program Files\Common Files\microsoft shared\DevServer\9.0\WebDev.WebServer.EXE");
 					break;
 
 				default:
-					WebDevWebServerPath = @"C:\Program Files\Common Files\microsoft shared\DevServer\10.0\WebDev.WebServer40.EXE";
+					for (int version = 15; version >= 9; version--)
+					{                        
+						possiblePaths.Add(String.Format(CultureInfo.InvariantCulture, @"C:\Program Files\Common Files\microsoft shared\DevServer\{0}.0\WebDev.WebServer40.EXE", version));
+						possiblePaths.Add(String.Format(CultureInfo.InvariantCulture, @"C:\Program Files (x86)\Common Files\microsoft shared\DevServer\{0}.0\WebDev.WebServer40.EXE", version));
+					}
+
 					break;
 			}
-		
-			if (!File.Exists(WebDevWebServerPath))
+
+			foreach (var path in possiblePaths)
 			{
-				WebDevWebServerPath = WebDevWebServerPath.Replace(@"\Program Files\", @"\Program Files (x86)\");
-
-				if (!File.Exists(WebDevWebServerPath))
+				if (File.Exists(path))
 				{
-					WebDevWebServerPath = ConfigurationManager.AppSettings["TestSharp::WebHostHelper::WebDevWebServerPath"];
+					WebDevWebServerPath = path;
+					break;
+				}
+			}
+		
+			if (String.IsNullOrEmpty(WebDevWebServerPath))
+			{
+				WebDevWebServerPath = ConfigurationManager.AppSettings["TestSharp::WebHostHelper::WebDevWebServerPath"];
 
-					if (String.IsNullOrEmpty(WebDevWebServerPath))
-					{
-						throw new InvalidOperationException(@"TestSharp could not found de WebDevWebServer. Please add the key 'TestSharp::WebHostHelper::WebDevWebServerPath' to AppSettings with the path of your WebDev.WebServer (eg.: C:\Program Files\Common Files\microsoft shared\DevServer\10.0\WebDev.WebServer40.EXE).");
-					}
+				if (String.IsNullOrEmpty(WebDevWebServerPath))
+				{
+					throw new InvalidOperationException(@"TestSharp could not found de WebDevWebServer. Please add the key 'TestSharp::WebHostHelper::WebDevWebServerPath' to AppSettings with the path of your WebDev.WebServer (eg.: C:\Program Files\Common Files\microsoft shared\DevServer\10.0\WebDev.WebServer40.EXE).");
 				}
 			}
 
@@ -62,8 +73,8 @@ namespace TestSharp
 			WebHostProcessName = "xsp";
 #endif
 			KillAll();
-        }
-        #endregion
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -88,7 +99,7 @@ namespace TestSharp
 		#endregion
 
 		
-        #region Methods
+		#region Methods
 		/// <summary>
 		/// Encerra todos os processos do WebDev.WebServer.
 		/// </summary>
@@ -108,10 +119,10 @@ namespace TestSharp
 		/// <param name="port">Porta que deve ser utilizada no WebDev.WebServer.</param>
 		[EnvironmentPermission(SecurityAction.LinkDemand)]
 		public static void Start(string projectFolderName, int port)
-        {	
+		{	
 			var path = Path.GetFullPath(VSProjectHelper.GetProjectFolderPath(projectFolderName));
 #if WIN
-            var arguments = String.Format(CultureInfo.InvariantCulture, "/port:{0} /vpath:/ /path:\"{1}\"", port, path);
+			var arguments = String.Format(CultureInfo.InvariantCulture, "/port:{0} /vpath:/ /path:\"{1}\"", port, path);
 #else
 						
 			var arguments = String.Format(CultureInfo.InvariantCulture, "--port {0} --root {1} --nonstop", port, path);
@@ -121,7 +132,7 @@ namespace TestSharp
 			startInfo.Arguments = arguments;
 			startInfo.UseShellExecute = false;
 			s_webHostProcesses.Enqueue(Process.Start (startInfo)); 
-        }
+		}
 
 		/// <summary>
 		/// Inicia a hospedagem do web site referente a pasta de projeto informada através do WebDev.WebServer e aguarda até que o servidor comece a responder.
@@ -142,6 +153,6 @@ namespace TestSharp
 				Thread.Sleep(1000);
 			}
 		}
-        #endregion
-    }
+		#endregion
+	}
 }
