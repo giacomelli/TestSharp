@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">WIN</Configuration>
@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS;OSX</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>TestSharp.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -86,5 +92,8 @@
     <Compile Include="WmiHelper.cs" />
     <Compile Include="ZipHelper.cs" />
     <Compile Include="TimeAssert.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestSharp.snk" />
   </ItemGroup>
 </Project>
