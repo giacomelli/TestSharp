@@ -1,7 +1,5 @@
 TestSharp
 =========
-[![Build Status](https://travis-ci.org/giacomelli/TestSharp.png?branch=master)](https://travis-ci.org/giacomelli/TestSharp)
-
 A set of helpers and asserts for unit and functional tests
 
 Setup
@@ -47,6 +45,7 @@ Asserts
 - WmiAssert
 
 
-Change Log
+License
 ======
-1.0.0 Initial version.
+Licensed under the The MIT License (MIT).
+In others words, you can use this library for developement any kind of software: open source, commercial, proprietary and alien.
